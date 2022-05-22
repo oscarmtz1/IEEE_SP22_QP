@@ -3,7 +3,7 @@
 
 If you want to install the virtual environment that I just created, go to [this link](https://stackoverflow.com/questions/14684968/how-to-export-virtualenv)
 
-Install my requirements.txt file and do this:
+Install my requirements.txt file and do this in your terminal / command prompt (with anaconda installed):
 ```
 $ virtualenv <env_name>
 $ source <env_name>/bin/activate
