@@ -8,6 +8,7 @@ import tensorflow as tf
 from tensorflow import keras
 import sys
 
+
 # Sampling rate.
 sr = 22050
 
@@ -39,6 +40,7 @@ def load_data(json_path):
 
     with open(json_path, 'r') as f:
         data = json.load(f)
+        #data = unicode(data, errors='replace')
     f.close()
 
     # Let's load our data into numpy arrays for TensorFlow compatibility.
@@ -77,7 +79,7 @@ def preprocess_data(source_path, json_path):
     f.close()
 
 
-model = tf.keras.models.load_model('saved_model/my_model')
+model = tf.keras.models.load_model('mymodel')
 
 def tai_prediction(model, X, y, idx):
     
@@ -102,13 +104,13 @@ def tai_prediction(model, X, y, idx):
 
 def super_prediction(path, target):
     preprocess_data(source_path=path,json_path=target)
-    inputs, targets = load_data(json_path=path)
+    inputs, targets = load_data(json_path=target)
 
     Xtrain, Xval, Xtest, ytrain, yval, ytest = prepare_datasets(inputs, targets, 0.2)
-    tai_prediction(model,Xtest,ytest,2)
+    tai_prediction(model,Xtest,ytest,1)
 
-music_file = sys.argv[0]
-music_target = sys.argv[1]
+music_file = 'test_music'#sys.argv[0]
+music_target = 'data.json'#sys.argv[1]
 
 super_prediction(music_file, music_target)
 
